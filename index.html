@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script> window.chtlConfig = { chatbotId: "8911156625" } </script>
+<script async data-id="8911156625" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Journal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js"></script>
-
 </head>
 <link rel="stylesheet" href="styles.css">
 
@@ -14,7 +15,7 @@
     <nav class="w-full bg-green-600 p-4 text-white flex justify-between px-6">
         <span class="text-bold font-light italic">Your Health, Your Wealth</span>
         <div class="space-x-6">
-            <a href="index.html" class="hover:underline">Home1</a>
+            <a href="index.html" class="hover:underline">Home</a>
             <a href="#about" class="hover:underline">About Us</a>
             <a href="#contact" class="hover:underline">Contact</a>
             <a href="remedies.html" class="hover:underline">Remedies</a>
@@ -40,6 +41,11 @@
     <section id="contact" class="mt-10 p-6 bg-white shadow-lg rounded-lg w-full max-w-md">
         <h2 class="text-xl font-bold text-center text-green-600">Contact Us</h2>
         <p class="text-gray-700 mt-2 text-center">Email: support@healthjournal.com</p>
+        
+        <div class="flex justify-center mt-4 space-x-4">
+            <button onclick="consultDoctor()" class="p-3 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition">Consult Doctor</button>
+            <button onclick="window.location.href='mailto:support@healthjournal.com'" class="p-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition">Contact</button>
+        </div>
     </section>
     
     <script>
@@ -93,6 +99,10 @@
             
             localStorage.setItem("healthData", JSON.stringify(outputData));
             window.location.href = "output.html";
+        }
+
+        function consultDoctor() {
+            window.location.href = "https://www.findadoctor.com"; 
         }
     </script>
 </body>
