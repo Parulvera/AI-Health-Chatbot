@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remedies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold text-center text-green-600">Health Remedies Chatbot</h1>
+
+        <div id="chatContainer" class="mt-4 space-y-3 h-64 overflow-auto bg-gray-100 p-4 rounded-lg border border-gray-300">
+            <!-- Chat messages will appear here -->
+        </div>
+
+        <input id="userInput" type="text" placeholder="Ask about a disease..." class="w-full p-3 border rounded-lg mt-4 focus:outline-none focus:ring-2 focus:ring-green-400">
+        <button onclick="sendMessage()" class="w-full p-3 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 mt-2 transition">Ask</button>
+    </div>
+
+    <div class="flex justify-between mt-4 w-full max-w-md">
+        <button onclick="goHome()" class="w-1/2 p-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 mr-2">
+            Home
+        </button>
+        <button onclick="goBackToReport()" class="w-1/2 p-3 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 ml-2">
+            Back to Report
+        </button>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('chatContainer');
+
+        function appendMessage(message, sender = "user") {
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add(sender === "user" ? "text-right" : "text-left", "p-2", "bg-green-200", "rounded-lg", "my-1");
+            messageDiv.textContent = message;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;  // Scroll to bottom
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            if (!userInput) return;
+
+            appendMessage(userInput, "user");
+
+            let response = getRemedyResponse(userInput.toLowerCase());
+
+            // Simulate a delay before the bot responds
+            setTimeout(() => {
+                appendMessage(response, "bot");
+            }, 1000);
+
+            document.getElementById('userInput').value = "";  // Clear input field
+        }
+
+        function getRemedyResponse(disease) {
+            switch (disease) {
+                case "fever":
+                    return "For fever, rest, stay hydrated, and take over-the-counter medication like paracetamol.";
+                case "cold":
+                    return "For a cold, stay warm, drink fluids, and use saline nasal spray.";
+                case "headache":
+                    return "For headaches, try resting in a quiet place, stay hydrated, and take ibuprofen if needed.";
+                case "stomach ache":
+                    return "For stomach ache, avoid heavy foods, drink ginger tea, and consider an antacid.";
+                case "back pain":
+                    return "For back pain, take rest, apply warm compress, and use pain relievers like ibuprofen.";
+                default:
+                    return "I'm sorry, I don't have a remedy for that disease. Please consult a healthcare provider.";
+            }
+        }
+
+        function goHome() {
+            window.location.href = "index.html";
+        }
+
+        function goBackToReport() {
+            window.location.href = "output.html";
+        }
+    </script>
+</body>
+</html>
